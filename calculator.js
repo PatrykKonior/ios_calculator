@@ -1,4 +1,5 @@
 let buffer = '0';
+const screen = document.querySelector('.screen');
 
 
 function buttonClick(value) {
@@ -7,7 +8,7 @@ function buttonClick(value) {
     } else {
         handleNumber(value);
     }
-
+    rerender()
 }
 
 
@@ -22,7 +23,27 @@ function handleNumber(number) {
 
 
 function handleSymbol(symbol) {
-    console.log('symbol');
+    switch (symbol) {
+        case 'C':
+            buffer = '0';
+            break;
+        case '=':
+            break;
+        case '←':
+            if (buffer.length === 1) {
+                buffer = '0';
+            } else {
+                buffer = buffer.substring(0, buffer.length - 1);
+            }
+        case '+':
+            break;
+        case '-':
+            break;
+        case '÷':
+            break;
+        case '×':
+            break;
+    }
 
 }
 
@@ -34,5 +55,11 @@ function init() {
             buttonClick(event.target.innerText);
         })
 }
+
+
+function rerender() {
+    screen.innerText = buffer
+}
+
 
 init();
